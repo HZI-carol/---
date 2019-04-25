@@ -1,0 +1,34 @@
+<%- include('../layout') %>
+
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="#">用户首页</a></li>
+        <li class="active">用户列表</li>
+    </ol>
+
+    <h3>用户列表</h3>
+    <table class="table table-striped table-hover">
+        <tr>
+            <td>ID</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>是否是管理员</td>
+        </tr>
+        <% for(let i=0;i<results.length;i++){ %>
+        <tr>
+            <td><%= results[i]._id %></td>
+            <td><%= results[i].username %></td>
+            <td><%= results[i].password %></td>
+            <td><%= results[i].isAdmin?'是':'否' %></td>
+        </tr>
+        <% } %>
+    </table>
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous"><a href="/admin/user?page=<%= page-1%>"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+            <li> <%= page %> / <%= pageMax %> </li>
+            <li class="next"><a href="/admin/user?page=<%= page+1%>">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+
+</div>

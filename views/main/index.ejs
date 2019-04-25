@@ -1,0 +1,76 @@
+<%-  include('./layout') %>
+
+<div class="center">
+    <div class="article_list">
+        <% for(let i=0;i<contents.length;i++){ %>
+        <div class="article_item" href="javascript:;">
+            <h3><%= contents[i].title %></h3>
+            <div class="article_main">
+                <p class="article_content ellipsis_4"><%= contents[i].description %></p>
+            </div>
+            <div class="article_tag">
+                <span><%= contents[i].category.name %></span>
+                <a class="btn btn-default" style='margin-left:20px' href="/view?contentId=<%= contents[i]._id%>">阅读全文</a>
+            </div>
+        </div>
+        <% } %>
+        <nav aria-label="..." class="container-fluid">
+            <ul class="pager">
+                <li class="previous"><a href="/?category=<%= category %>&page=<%=page-1 %>"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                <li> <%= page %> / <%= pageMax %> </li>
+                <li class="next"><a href="/?category=<%= category %>&page=<%=page+1 %>">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
+    </div>
+    <aside class="user_list">
+        <% if(!userInfo){ %>
+        <div class="user_form">
+            <div class="user_tab j_userTab">
+                <span class="user_cur">登录</span>
+                <span>注册</span>
+            </div>
+            <div id="login" class="user_login">
+                <div class="user_input">
+                    <i class="iconfont">&#xe60d;</i>
+                    <input type="text" placeholder="请输入用户名" id="username">
+                </div>
+                <div class="user_input margin_bottom0">
+                    <i class="iconfont">&#xe6c6;</i>
+                    <input type="password" placeholder="请输入密码" id="password">
+                </div>
+                <p class="user_err"><span>用户名不能为空</span></p>
+                <p class="user_login_btn">登 录</p>
+            </div>
+            <div id="register" class="user_register">
+                <div class="user_input">
+                    <i class="iconfont">&#xe60d;</i>
+                    <input type="text" placeholder="请输入用户名" id="regUser">
+                </div>
+                <div class="user_input">
+                    <i class="iconfont">&#xe6c6;</i>
+                    <input type="password" placeholder="请输入密码" id="regPsd">
+                </div>
+                <div class="user_input margin_bottom0">
+                    <i class="iconfont">&#xe6c6;</i>
+                    <input type="password" placeholder="请再次输入密码" id="regRepsd">
+                </div>
+                <p class="user_err"><span>用户名不能为空</span></p>
+                <p class="user_register_btn">注 册</p>
+            </div>
+        </div>
+        <% }else{ %>
+        <div class="user_logined">
+            <% if(!userInfo.isAdmin){ %>
+            <p class="user_welcome">欢迎，<i><%= userInfo.username %></i></p>
+            <% }else{ %>
+            <p class="user_welcome">欢迎，<i><%= userInfo.username %></i><a href="/admin">请进入后台管理面板</a></p>
+            <% } %>
+            <span class="user_loginOut" id="loginout">退出</span>
+        </div>
+        <% } %>
+    </aside>
+</div>
+<script src="/js/ajax.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

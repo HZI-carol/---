@@ -1,0 +1,38 @@
+<%- include('../layout')%>
+
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="javascript:;">分类首页</a></li>
+        <li class="active">分类列表</li>
+    </ol>
+
+    <h3>分类列表</h3>
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <td>ID</td>
+            <td>分类名称</td>
+            <td>操作类型</td>
+        </tr>
+
+        <% for(let i=0;i<results.length;i++){ %>
+        <tr>
+            <td><%= results[i]._id %></td>
+            <td><%= results[i].name %></td>
+            <td>
+                <a href="/admin/category/update?category=<%= results[i].name %>">修改</a> |
+                <a href="/admin/category/delete?category=<%= results[i].name %>">删除</a>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous"><a href="/admin/category?page=<%=page-1 %>"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+            <li> <%= page %> / <%= pageMax %> </li>
+            <li class="next"><a href="/admin/category?page=<%=page+1 %>">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+
+</div>

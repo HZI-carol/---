@@ -1,0 +1,26 @@
+<%- include('../layout')%>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="javascript:;">内容首页</a></li>
+        <li class="active">内容修改</li>
+    </ol>
+    <h3>所属分类 - <%= result.category.name %></h3>
+
+    <form  method="post">
+
+        <div class="form-group">
+            <label for="contentTitle">标题：</label>
+            <input type="text" class="form-control" name="title" value="<%= result.title %>">
+        </div>
+
+        <div class="form-group">
+            <label for="contentTitle">简介：</label>
+            <textarea type="text" class="form-control" rows='2' name="description"><%= result.description %></textarea>
+        </div>
+        <div class="form-group">
+            <label for="contentTitle">内容：</label>
+            <textarea type="text" class="form-control" rows='6' name="content"><%= result.content %></textarea>
+        </div>
+        <button type="submit" class="btn btn-default">点击修改内容</button>
+    </form>
+</div>

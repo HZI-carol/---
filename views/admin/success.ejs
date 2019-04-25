@@ -1,0 +1,20 @@
+<%- include('./layout')%>
+<div class="container-fluid">
+    <ol class="breadcrumb">
+        <li><a href="javascript:;"><%= optionMessage.location %></a></li>
+        <li class="active"><%= optionMessage.option %></li>
+    </ol>
+    <h3><%= optionMessage.option %></h3>
+
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">成功提示!!</h3>
+        </div>
+        <div class="panel-body">
+            <%= optionMessage.message %>
+        </div>
+        <div class="panel-heading">
+            <a href="<%= url %>"><%= optionMessage.href %></a>
+        </div>
+    </div>
+</div>

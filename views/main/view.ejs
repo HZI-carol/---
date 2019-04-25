@@ -1,0 +1,97 @@
+<%- include('./layout')%>
+
+<div class="center">
+    <div class="detail_main">
+        <h2 class="detail_title"><%= content.title %></h2>
+        作者：<span class="detail_tag"><%= content.author.username %></span>
+        时间：<span class="detail_tag"><%= content.time.toLocaleString() %></span>
+        阅读量：<span class="detail_tag"><%= content.views %></span>
+        评论：<span class="detail_tag disAmount">0</span>
+
+        <div class="detail_content">
+            <p><%= content.content %></p>
+        </div>
+    </div>
+    <div class="discuss">
+        <div class="user_tab">
+            <span class="discuss_title">评论</span>
+        </div>
+        <div class="discuss_main">
+            <% if(userInfo){ %>
+            <p class="discuss_default">你已经登录了~~</p>
+            <% }else{ %>
+            <p class="discuss_default">您还没有登录，请先登录～</p>
+            <% } %>
+            <div class="discuss_content">
+                <div class="input-group">
+                    <textarea type="text" class="form-control" id='comment' placeholder="请在这里留下你的评论" aria-describedby="basic-addon2" rows="3"></textarea>
+                    <input type="hidden" id='hidden' value="<%= content._id %>">
+                    <span class="input-group-addon" id="commentBtn" style='cursor: pointer' >提交</span>
+                </div>
+                <ul class="discuss_list" >
+
+                </ul>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                        <li class="comment_detail"></li>
+                        <li class="next"><a href="javascript:;">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <aside class="user_list">
+        <% if(!userInfo){ %>
+        <div class="user_form">
+            <div class="user_tab j_userTab">
+                <span class="user_cur">登录</span>
+                <span>注册</span>
+            </div>
+            <div id="login" class="user_login">
+                <div class="user_input">
+                    <i class="iconfont">&#xe60d;</i>
+                    <input type="text" placeholder="请输入用户名" id="username">
+                </div>
+                <div class="user_input margin_bottom0">
+                    <i class="iconfont">&#xe6c6;</i>
+                    <input type="password" placeholder="请输入密码" id="password">
+                </div>
+                <p class="user_err"><span>用户名不能为空</span></p>
+                <p class="user_login_btn">登 录</p>
+            </div>
+            <div id="register" class="user_register">
+                <div class="user_input">
+                    <i class="iconfont">&#xe60d;</i>
+                    <input type="text" placeholder="请输入用户名" id="regUser">
+                </div>
+                <div class="user_input">
+                    <i class="iconfont">&#xe6c6;</i>
+                    <input type="password" placeholder="请输入密码" id="regPsd">
+                </div>
+                <div class="user_input margin_bottom0">
+                    <i class="iconfont">&#xe6c6;</i>
+                    <input type="password" placeholder="请再次输入密码" id="regRepsd">
+                </div>
+                <p class="user_err"><span>用户名不能为空</span></p>
+                <p class="user_register_btn">注 册</p>
+            </div>
+        </div>
+        <% }else{ %>
+        <div class="user_logined">
+            <% if(!userInfo.isAdmin){ %>
+            <p class="user_welcome">欢迎，<i><%= userInfo.username %></i></p>
+            <% }else{ %>
+            <p class="user_welcome">欢迎，<i><%= userInfo.username %></i><a href="/admin">请进入后台管理面板</a></p>
+            <% } %>
+            <span class="user_loginOut" id="loginout">退出</span>
+        </div>
+        <% } %>
+    </aside>
+</div>
+
+<script src="/js/ajax.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/comment.js"></script>
+</body>
+</html>
